@@ -1,13 +1,3 @@
-# Python Datascience Project
+# Python app for my girlfriend!
 
-Dataset description
-
-This repo contains
-
-
-## TODO
-
-## Pitfalls
-
-# Setup/Installation
-
+This repo contains a small python app that will become a little hub for my girlfriend. It will contain a way to access articles about her interests.
