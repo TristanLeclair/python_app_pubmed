@@ -1,6 +1,9 @@
+import logging
 import requests
 from bs4 import BeautifulSoup
 import requests_cache
+
+logger = logging.getLogger(__name__)
 
 
 def fetch_neuroscience_articles(term="neuroscience"):
@@ -21,7 +24,11 @@ def fetch_neuroscience_articles(term="neuroscience"):
         response = requests.get(base_url, params=params)
 
         # print the request URL
-        print(response.url)
+        logger.info(response.url)
+
+        # log whether the response was pulled from the cache
+        # or was freshly downloaded
+        logger.info("Pulled from cache" if response.from_cache else "Fetched from url")  # type: ignore
 
         if response.status_code == 200:
             # Parse the XML response
@@ -36,7 +43,8 @@ def fetch_neuroscience_articles(term="neuroscience"):
 
             return article_links
         else:
-            print(f"Error: {response.status_code}")
+            err_msg = f"Error: {response.status_code}"
+            logger.error(err_msg)
             return None
 
 
@@ -46,6 +54,6 @@ if __name__ == "__main__":
 
     if recent_articles:
         for article in recent_articles:
-            print(article)
+            logger.info(article)
     else:
-        print("Failed to fetch articles.")
+        logger.error("Failed to fetch articles.")
