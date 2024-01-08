@@ -1,6 +1,7 @@
 import logging
 import argparse
 from tkinter import Tk, font
+import ttkbootstrap as ttk
 from src.common.logging_utils import add_logging_args, setup_root_logger
 from app.components.ArticleFetcher import ArticleFetcher
 
@@ -23,9 +24,9 @@ class App:
         self.master = master
         self.links = []
 
-        self.defaultFont = font.nametofont("TkDefaultFont")
-
-        self.defaultFont.configure(family="Segoe Script", size=19, weight=font.BOLD)
+        # self.defaultFont = font.nametofont("TkDefaultFont")
+        #
+        # self.defaultFont.configure(family="Segoe Script", size=19, weight=font.BOLD)
 
         self.article_fetcher = ArticleFetcher(self.master)
 
@@ -38,7 +39,12 @@ if __name__ == "__main__":
     setup_root_logger(logging, log_level, deep_logging)
     logger = logging.getLogger(__name__)
 
-    root = Tk()
+    root = ttk.Window(themename="superhero")
+    # Access the default font object
+    default_font = font.nametofont("TkDefaultFont")
+
+    # Configure the default font to change its size (and optionally, the font family)
+    default_font.configure(size=30, family="Helvetica")
 
     root.title("Neuro app")
     root.geometry("400x400")

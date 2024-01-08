@@ -1,7 +1,7 @@
 import logging
 import webbrowser
 from tkinter import Tk
-from tkinter.ttk import Label, Button, Frame, Style
+from ttkbootstrap import Label, Button, Frame, Style
 
 from scripts.fetch_neuro_articles import fetch_neuroscience_articles
 
@@ -13,9 +13,10 @@ class ArticleFetcher(Frame):
         super().__init__(master)
         self.master = master
         self.links = []
-        self.style = Style(self)
-        button_style_name = "My.TButton"
-        self.style.configure(button_style_name, background="red", foreground="white")
+        self.style = Style()
+        self.style.configure(
+            "primary.TButton", font=("Arial", 10, "bold"), background="blue"
+        )
         self.articles_frame = Frame(
             self.master,
         )
@@ -26,7 +27,7 @@ class ArticleFetcher(Frame):
             self.master,
             text="Press me now",
             command=self.update_label,
-            style=button_style_name,
+            style="primary.TButton",
         )
         self.fetch_btn.pack()
         self.articles_frame.pack()
