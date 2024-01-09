@@ -22,15 +22,16 @@ class ArticleFetcher(Frame):
         )
         self.fetch_btn = Button(
             self.master,
-            text="Press me now",
+            text="Fetch articles",
             command=self.update_label,
         )
         self.next_page_btn = Button(
             self.master,
             text="Next page",
-            command=self.update_label,
+            command=self.next_page,
         )
         self.fetch_btn.pack()
+        self.next_page_btn.pack()
         self.articles_frame.pack()
 
     def update_label(self):
@@ -49,5 +50,4 @@ class ArticleFetcher(Frame):
             self.links.append(link)
 
     def next_page(self):
-
-    pass
+        pass
