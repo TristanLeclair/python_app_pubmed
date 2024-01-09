@@ -12,11 +12,8 @@ class ArticleFetcher(Frame):
     def __init__(self, master: Tk):
         super().__init__(master)
         self.master = master
+        self.page_num = 1
         self.links = []
-        self.style = Style()
-        self.style.configure(
-            "primary.TButton", font=("Arial", 10, "bold"), background="blue"
-        )
         self.articles_frame = Frame(
             self.master,
         )
@@ -27,7 +24,11 @@ class ArticleFetcher(Frame):
             self.master,
             text="Press me now",
             command=self.update_label,
-            style="primary.TButton",
+        )
+        self.next_page_btn = Button(
+            self.master,
+            text="Next page",
+            command=self.update_label,
         )
         self.fetch_btn.pack()
         self.articles_frame.pack()
@@ -46,5 +47,7 @@ class ArticleFetcher(Frame):
             link.pack()
             link.bind("<Button-1>", lambda _: webbrowser.open_new(url))
             self.links.append(link)
+
+    def next_page(self):
 
     pass

@@ -44,7 +44,7 @@ if __name__ == "__main__":
     default_font = font.nametofont("TkDefaultFont")
 
     # Configure the default font to change its size (and optionally, the font family)
-    default_font.configure(size=30, family="Helvetica")
+    default_font.configure(size=14, family="Helvetica")
 
     root.title("Neuro app")
     root.geometry("400x400")
