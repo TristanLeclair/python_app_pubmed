@@ -22,14 +22,8 @@ def parse_args():
 class App:
     def __init__(self, master: Tk) -> None:
         self.master = master
-        self.links = []
-
-        # self.defaultFont = font.nametofont("TkDefaultFont")
-        #
-        # self.defaultFont.configure(family="Segoe Script", size=19, weight=font.BOLD)
 
         self.article_fetcher = ArticleFetcher(self.master)
-
         self.article_fetcher.pack()
 
 
