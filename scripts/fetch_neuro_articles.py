@@ -6,7 +6,24 @@ import requests_cache
 logger = logging.getLogger(__name__)
 
 
-def fetch_neuroscience_articles(term="neuroscience"):
+def fetch_neuroscience_articles(term="neuroscience", retmax=20):
+    """Fetch recent neuroscience articles from PubMed.
+    Returns a list of article links.
+
+    >>> fetch_neuroscience_articles()
+    Returns:
+    List[str]: A list of article links.
+
+    >>> fetch_neuroscience_articles(retmax=5)
+    Returns:
+    List[str]: A list of article links. The list will contain 5 links.
+
+    >>> fetch_neuroscience_articles(term="neuroscience", retmax=5)
+    Returns:
+    List[str]: A list of article links. The list will contain 5 links. The articles will contain the word "neuroscience" in the title or abstract.
+
+    API documentation: https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch
+    """
     base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 
     # Set parameters
@@ -15,6 +32,7 @@ def fetch_neuroscience_articles(term="neuroscience"):
         "term": term,
         "usehistory": "y",
         # "api_key": api_key,
+        "retmax": retmax,
     }
 
     with requests_cache.enabled(
